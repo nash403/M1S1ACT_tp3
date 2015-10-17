@@ -23,7 +23,7 @@ public class Chocolat {
 	 */
 	public int y;
 
-	public static int getValue(int m, int n, int x, int y) {
+	public static int getValue_naif(int m, int n, int x, int y) {
 		List<Integer> pos = new LinkedList<Integer>();
 		List<Integer> neg = new LinkedList<Integer>();
 
@@ -31,7 +31,7 @@ public class Chocolat {
 			return 0;
 		} else {
 			for (int i = 1; i <= x; i++) {
-				int res = getValue(m - i, n, x - i, y);
+				int res = getValue_naif(m - i, n, x - i, y);
 				if (res > 0) {
 					pos.add(Integer.valueOf(res));
 				} else {
@@ -39,7 +39,7 @@ public class Chocolat {
 				}
 			}
 			for (int i = x + 1; i < m; i++) {
-				int res = getValue(i, n, x, y);
+				int res = getValue_naif(i, n, x, y);
 				if (res > 0) {
 					pos.add(Integer.valueOf(res));
 				} else {
@@ -47,7 +47,7 @@ public class Chocolat {
 				}
 			}
 			for (int i = 1; i <= y; i++) {
-				int res = getValue(m, n - i, x, y - i);
+				int res = getValue_naif(m, n - i, x, y - i);
 				if (res > 0) {
 					pos.add(Integer.valueOf(res));
 				} else {
@@ -55,7 +55,7 @@ public class Chocolat {
 				}
 			}
 			for (int i = y + 1; i < n; i++) {
-				int res = getValue(m, i, x, y);
+				int res = getValue_naif(m, i, x, y);
 				if (res > 0) {
 					pos.add(Integer.valueOf(res));
 				} else {
@@ -72,6 +72,26 @@ public class Chocolat {
 		}
 	}
 
+	public static int getValue_dynammique(int m, int n, int x, int y){
+		int[][][][] values = new int[m][n][x][y];
+		values[1][1][0][0] = 0;
+		
+		for(int k=1,mp=1,i=0; k<x; k++){
+			values[mp+k][n][i+k][y] = - (Math.abs(values[mp][n][i][y]) + 1);
+		}
+		for(int mp = 1;mp < m;mp++){
+			for(int np = 1;np<n;np++){
+				for(int i=0;i<m-1;i++){
+					for(int j=0;j<n-1;j++){
+						values[mp][np][i][j] = - (Math.abs(values[mp][n][i][y]) + 1);
+					}
+				}
+			}
+		}
+		
+		return values[m][n][x][y];
+	}
+	
 	public static Integer maximum(List<Integer> list) {
 		Integer tmp = list.get(0);
 		for (Integer i : list) {
@@ -83,17 +103,17 @@ public class Chocolat {
 	}
 
 	public static void main(String args[]) throws Exception {
-		System.out.println(getValue(3, 2, 2, 0));
-		System.out.println(getValue(3, 1, 2, 0));
-		System.out.println(getValue(2, 2, 1, 0));
-		System.out.println(getValue(2, 1, 1, 0));
-		System.out.println(getValue(1, 2, 0, 1));
-		System.out.println(getValue(1, 1, 0, 0));
+		System.out.println(getValue_naif(3, 2, 2, 0));
+		System.out.println(getValue_naif(3, 1, 2, 0));
+		System.out.println(getValue_naif(2, 2, 1, 0));
+		System.out.println(getValue_naif(2, 1, 1, 0));
+		System.out.println(getValue_naif(1, 2, 0, 1));
+		System.out.println(getValue_naif(1, 1, 0, 0));
 		long deb= System.nanoTime();
-		System.out.println(getValue(10, 7, 7, 3));
+		System.out.println(getValue_naif(10, 7, 7, 3));
 		System.out.println("Le temps que (10, 7, 7, 3) a prit " + (System.nanoTime() - deb));
 		deb = System.nanoTime();
-		System.out.println(getValue(10, 7, 5, 3));
+		System.out.println(getValue_naif(10, 7, 5, 3));
 		System.out.println("Le temps que (10, 7, 5, 3) a prit " + (System.nanoTime() - deb));
 	}
 
