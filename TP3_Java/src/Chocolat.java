@@ -54,16 +54,26 @@ public class Chocolat {
 	public static int getValue_dynamique(int m, int n, int i, int j) {
 		int[][][][] tablet = initTablet(m, n);
 
-		return tablet[m][n][i][j];
+		return m >= n ? tablet[m][n][i][j] : tablet[n][m][j][i];
 	}
 
-	public static int[][][][] initTablet(int m, int n) {
+	public static int[][][][] initTablet(int l, int p) {
+		int m,n;
+		if (l >= p){
+			m = l;n=p;
+		}else {
+			m=p;n=l;
+		}
+			
 		int[][][][] tablet= new int[m + 1][n + 1][][];
 		tablet[1][1] = new int[1][1];
 		tablet[1][1][0][0] = 0;
 		for (int mp = 1; mp <= m; mp++) {
-			for (int np = 1; np <= n; np++) {
+			for (int np = 1; np <= mp && np <=n; np++) {
+				//System.out.println("mp="+mp+", np="+np);
 				tablet[mp][np] = new int[mp][np];
+				if (mp <=n && np <= mp)
+				tablet[np][mp] = new int[np][mp];
 
 				for (int i = 0,sti = ((mp/2)+1); i < sti; i++) {
 					for (int j = 0,stj = ((np/2)+1); j < stj; j++) {
@@ -110,11 +120,18 @@ public class Chocolat {
 							} else {
 								tablet[mp][np][i][j] = -(maximum(neg)).intValue() + 1;
 							}
-							
+							if (mp <=n && np <= mp)
+							tablet[np][mp][j][i] = tablet[mp][np][i][j];
 							/* Les 3 autres configurations équivalentes à (mp,np,i,j) */
 							tablet[mp][np][i][np-j-1] = tablet[mp][np][i][j];
 							tablet[mp][np][mp-i-1][j] = tablet[mp][np][i][j];
 							tablet[mp][np][mp-i-1][np-j-1] = tablet[mp][np][i][j];
+							
+							if (mp <=n && np <= mp){
+							/* Les 3 autres configurations équivalentes à (np,mp,j,i) */
+							tablet[np][mp][np-j-1][i] = tablet[mp][np][i][j];
+							tablet[np][mp][j][mp-i-1] = tablet[mp][np][i][j];
+							tablet[np][mp][np-j-1][mp-i-1] = tablet[mp][np][i][j];}
 						}
 					}
 				}
