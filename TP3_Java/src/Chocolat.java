@@ -273,67 +273,61 @@ public class Chocolat {
 
 	public static void main(String args[]) throws Exception {
 		// Décommenter pour tester l'algo
-		/*
-		 * long deb, tot; tot = System.nanoTime(); System.out.println(
-		 * "****************Algorithme naif****************");
-		 * System.out.println("Valeur de (3,2,2,0) : " + getValue_naif(3, 2, 2,
-		 * 0)); System.out.println("Valeur de (3,1,2,0) : " + getValue_naif(3,
-		 * 1, 2, 0)); System.out.println("Valeur de (3,2,1,0) : " +
-		 * getValue_naif(2, 2, 1, 0)); System.out.println(
-		 * "Valeur de (3,1,1,0) : " + getValue_naif(2, 1, 1, 0));
-		 * System.out.println("Valeur de (1,2,0,1) : " + getValue_naif(1, 2, 0,
-		 * 1)); System.out.println("Valeur de (1,1,0,0) : " + getValue_naif(1,
-		 * 1, 0, 0)); deb = System.nanoTime(); System.out.println(
-		 * "Valeur de (10,7,7,3) : " + getValue_naif(10, 7, 7, 3)); System.out
-		 * .println("Le temps que (10, 7, 7, 3) a prit " + ((System.nanoTime() -
-		 * deb) / 1000000000) + " secondes"); deb = System.nanoTime();
-		 * System.out.println("Valeur de (10,7,5,3) : " + getValue_naif(10, 7,
-		 * 5, 3)); System.out .println("Le temps que (10, 7, 5, 3) a prit " +
-		 * ((System.nanoTime() - deb) / 1000000000) + " secondes");
-		 * 
-		 * System.out.println(
-		 * "****************Algorithme dynamique****************");
-		 * System.out.println("Valeur de (3,2,2,0) : " + getValue_dynamique(3,
-		 * 2, 2, 0)); System.out.println("Valeur de (3,1,2,0) : " +
-		 * getValue_dynamique(3, 1, 2, 0)); System.out.println(
-		 * "Valeur de (2,2,1,0) : " + getValue_dynamique(2, 2, 1, 0));
-		 * System.out.println("Valeur de (2,1,1,0) : " + getValue_dynamique(2,
-		 * 1, 1, 0)); System.out.println("Valeur de (1,2,0,1) : " +
-		 * getValue_dynamique(1, 2, 0, 1)); System.out.println(
-		 * "Valeur de (1,1,0,0) : " + getValue_dynamique(1, 1, 0, 0)); deb =
-		 * System.nanoTime(); System.out.println("Valeur de (10,7,7,3) : " +
-		 * getValue_dynamique(10, 7, 7, 3)); System.out .println(
-		 * "Le temps que (10, 7, 7, 3) a prit " + ((System.nanoTime() - deb) /
-		 * 1000000000) + " secondes"); deb = System.nanoTime();
-		 * System.out.println("Valeur de (10,7,5,3) : " + getValue_dynamique(10,
-		 * 7, 5, 3)); System.out .println("Le temps que (10, 7, 5, 3) a prit " +
-		 * ((System.nanoTime() - deb) / 1000000000) + " secondes"); deb =
-		 * System.nanoTime(); System.out.println("Valeur de (100,100,50,50) : "
-		 * + getValue_dynamique(100, 100, 50, 50)); System.out.println(
-		 * "Le temps que (100, 100, 50, 50) a prit " + ((System.nanoTime() -
-		 * deb) / 1000000000) + " secondes"); deb = System.nanoTime();
-		 * System.out.println("Valeur de (100,100,48,52) : " +
-		 * getValue_dynamique(100, 100, 48, 52)); System.out.println(
-		 * "Le temps que (100, 100, 48, 52) a prit " + ((System.nanoTime() -
-		 * deb) / 1000000000) + " secondes"); deb = System.nanoTime();
-		 * List<Point> points = getPossiblePosition(127, 127, 127); for (Point
-		 * result : points) { System.out.println(
-		 * "L'un des points possible qui a la valeur 127 est le suivant : (" +
-		 * result.getX() + ", " + result.getY() + ")"); } System.out.println(
-		 * "Le temps que getPossiblePosition a prit " + ((System.nanoTime() -
-		 * deb) / 1000000000) + " secondes"); System.out.println(
-		 * "Le temps que l'ensemble du programme a prit " + ((System.nanoTime()
-		 * - tot) / 1000000000) + " secondes"); System.out.println(
-		 * "Fin du programme");
-		 */
+
+		// long deb, tot;
+		// tot = System.nanoTime();
+		// System.out.println("****************Algorithme naif****************");
+		// System.out.println("Valeur de (3,2,2,0) : " + getValue_naif(3, 2, 2, 0));
+		// System.out.println("Valeur de (3,1,2,0) : " + getValue_naif(3, 1, 2, 0));
+		// System.out.println("Valeur de (3,2,1,0) : " + getValue_naif(2, 2, 1, 0));
+		// System.out.println("Valeur de (3,1,1,0) : " + getValue_naif(2, 1, 1, 0));
+		// System.out.println("Valeur de (1,2,0,1) : " + getValue_naif(1, 2, 0, 1));
+		// System.out.println("Valeur de (1,1,0,0) : " + getValue_naif(1, 1, 0, 0));
+		// deb = System.nanoTime();
+		// System.out.println("Valeur de (10,7,7,3) : " + getValue_naif(10, 7, 7, 3));
+		// System.out
+		// 		.println("Le temps que (10, 7, 7, 3) a prit " + ((System.nanoTime() - deb) / 1000000000) + " secondes");
+		// deb = System.nanoTime();
+		// System.out.println("Valeur de (10,7,5,3) : " + getValue_naif(10, 7, 5, 3));
+		// System.out
+		// 		.println("Le temps que (10, 7, 5, 3) a prit " + ((System.nanoTime() - deb) / 1000000000) + " secondes");
+		//
+		// System.out.println("****************Algorithme dynamique****************");
+		// deb = System.nanoTime();
+		// System.out.println("Valeur de (10,7,7,3) : " + getValue_dynamique(10, 7, 7, 3));
+		// System.out
+		// 		.println("Le temps que (10, 7, 7, 3) a prit " + ((System.nanoTime() - deb) / 1000000000) + " secondes");
+		// deb = System.nanoTime();
+		 System.out.println("Valeur de (10,7,5,3) : " + getValue_dynamique(10, 7, 5, 3));
+		// System.out
+		// 		.println("Le temps que (10, 7, 5, 3) a prit " + ((System.nanoTime() - deb) / 1000000000) + " secondes");
+		// deb = System.nanoTime();
+		// System.out.println("Valeur de (100,100,50,50) : " + getValue_dynamique(100, 100, 50, 50));
+		// System.out.println(
+		// 		"Le temps que (100, 100, 50, 50) a prit " + ((System.nanoTime() - deb) / 1000000000) + " secondes");
+		// deb = System.nanoTime();
+		 System.out.println("Valeur de (100,100,48,52) : " + getValue_dynamique(100, 100, 48, 52));
+		// System.out.println(
+		// 		"Le temps que (100, 100, 48, 52) a prit " + ((System.nanoTime() - deb) / 1000000000) + " secondes");
+		// deb = System.nanoTime();
+		 List<Point> points = getPossiblePosition(127, 127, 127);
+		 for (Point result : points) {
+		 	System.out.println("L'un des points possible qui a la valeur 127 est le suivant : (" + result.getX() + ", "
+		 			+ result.getY() + ")");
+		 }
+		// System.out.println(
+		// 		"Le temps que getPossiblePosition a prit " + ((System.nanoTime() - deb) / 1000000000) + " secondes");
+		// System.out.println("Fin du test");
+		// System.out.println("Le temps que l'ensemble du test a prit " + ((System.nanoTime() - tot) / 1000000000)
+		// 		+ " secondes");
 
 		// Décommenter pour tester le jeu
 
-		int m = Integer.parseInt(args[0]);
-		int n = Integer.parseInt(args[1]);
-		int i = Integer.parseInt(args[2]);
-		int j = Integer.parseInt(args[3]);
-		game(m, n, i, j);
+		// int m = Integer.parseInt(args[0]);
+		// int n = Integer.parseInt(args[1]);
+		// int i = Integer.parseInt(args[2]);
+		// int j = Integer.parseInt(args[3]);
+		// game(m, n, i, j);
 
 	}
 
